@@ -1,0 +1,71 @@
+*{text-rendering: optimizeLegibility;-webkit-font-smoothing:antialiased;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-backface-visibility: hidden;}
+html,body{overflow:hidden;margin:0;padding:0;height:100%;}
+body{font-family: 'Segoe UI Light',Arial, sans-serif;font-size:22px;color:#333;background-color: #f0f0f0;}
+div {padding: .5em 0;}
+input { width: 3em;background: #fff; color: #777;text-align: center;border: 1px solid #ccc;padding: 6px 4px;outline: none;border-radius: 2px;}
+input:focus {color: #444;border: 1px solid #aaa;box-shadow:  0 0 3px rgba(0,0,0,.2);}
+a, a:visited { color: #cc3333;  text-decoration: none; outline: 0;}
+a:hover, a:focus { color: #000;text-decoration: underline;}
+#content { width:90%; max-width: 350px; margin: 3em auto;}
+#midle {}
+#upload-zone {font-size: 1.4em; font-weight: 500; font-style: italic;}
+#upload-copy {}
+#progress {}
+.upload_form_cont {}
+.upload_form_cont > div {}
+.info {text-align: center;}
+.progress {}
+.error {
+	padding: 8px 10px;
+	text-align: center;
+	color: #fff;
+	font-weight: 800;
+	line-height: 150%;
+	border-radius: 10px;
+	text-shadow: 1px 1px 3px #000;
+	box-shadow: 0 0 15px 0px rgba(0, 0, 0, .9);
+	background-color: #a10b0b;
+	border: 2px solid #ff0000;
+}
+/* keyframes */
+.animated {
+		-webkit-animation-duration: 2s;
+		-moz-animation-duration: 2s;
+		-o-animation-duration: 2s;
+	animation-duration: 2s;
+		-webkit-animation-iteration-count: infinite;
+		-o-animation-iteration-count: infinite;
+		-moz-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+@-webkit-keyframes shake {
+	0%, 100% {-webkit-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-webkit-transform: translateX(10px);}
+}
+@-moz-keyframes shake {
+	0%, 100% {-moz-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-moz-transform: translateX(10px);}
+}
+@-o-keyframes shake {
+	0%, 100% {-o-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-o-transform: translateX(10px);}
+}
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+.animated.shake {
+	-webkit-animation-name: shake;
+	-moz-animation-name: shake;
+	-o-animation-name: shake;
+	animation-name: shake;
+}
+/* Responsive */
+@media (max-width:480px){
+	html,body {font-size: 16px;}
+	#content { margin: .5em auto;}
+}

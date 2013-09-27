@@ -11,6 +11,10 @@
  * @param string $titreDocument
  * @return boolean
  */
+ 
+ // set_time_limit(0);
+ // ini_get ('max_execution_time);
+ 
 function isValidName($titreDocument){
 	if(!(strlen($titreDocument) >= 3 && strlen($titreDocument) <= 100))
 		return false;
@@ -134,34 +138,40 @@ $memory_limit = (int)(ini_get('memory_limit'));
 $upload_mb = min($max_upload, $max_post, $memory_limit);
 $upload_b = $upload_mb * 1024 * 1024;
 
-?><!DOCTYPE html><html lang="fr">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Up</title><meta charset="utf-8">
+?><!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Up</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, user-scalable=yes">
-	<link rel="apple-touch-icon" href="favicon.png">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144x144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="images/apple-touch-icon-144x144-precomposed.png">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="stylesheet" href="css/style.css">
 	<body>
 		<div id="content">
-            <section id="midle">
-            	<div class="upload_form_cont">
-            		<?php if(!empty($serverMsg)){?>
-	            		<div class="error"><?php echo $serverMsg;?></div>
-            		<?php }else{?>
-	            		<div class="info">
-	            			<div id="upload-zone">Drop your files :-)</div>
-	            		</div>
-	            		<div>Number of available copies : <input type="text" id="upload-copy" value="1"></input></div>
-            		<?php }?>
-            		<div>Max upload size : <?php echo $upload_mb;?> Mb</div>
-            		<div id="progress"></div>
-            	</div>
-            </section>
+			<section id="midle">
+				<div class="upload_form_cont">
+					<?php if(!empty($serverMsg)){?>
+						<div class="error"><?php echo $serverMsg;?></div>
+					<?php }else{?>
+						<h1 id="upload-zone" class="info animated shake">Drop your files :-)</h1>
+						<div>Number of available uploads : <input type="text" id="upload-copy" value="1"></input></div>
+					<?php }?>
+					<div>Max upload size : <?php echo $upload_mb;?> Mb</div>
+					<div id="progress"></div>
+				</div>
+			</section>
 			<div class="progress"></div>
-			<script type="text/javascript">
+			<script>
 			// variables
 			var dropArea = document.documentElement; // drop area zone JS object
 			var progress = document.getElementById('progress'); // text zone where informations about uploaded files are displayed
@@ -233,8 +243,8 @@ $upload_b = $upload_mb * 1024 * 1024;
 			        xhr.onreadystatechange = function() {
 			            if(xhr.readyState == 4){
 				            console.log(xhr);
-			                var progressMessage = "File : " + file['name'] + " ("+file['type']+") progress : 100%" + " (" + file['size'] + " octets) : ";
-			                urlMessage = '<a href="index.php?f='+xhr.responseText+'">'+xhr.responseText+'</a>';
+			                var progressMessage = "File : " + file['name'] + " ("+file['type']+") <br>Progress : 100%" + " (" + file['size'] + " octets)";
+			                urlMessage = '<br>Link : <a href="index.php?f='+xhr.responseText+'">'+xhr.responseText+'</a>';
 			                var fileDiv = document.getElementById('file_'+nbDone+'');
 			                fileDiv.innerHTML =  progressMessage + urlMessage;
 			                console.log(nbUploaded);
@@ -245,7 +255,7 @@ $upload_b = $upload_mb * 1024 * 1024;
 			        };
 
 			        xhr.onerror = function() {
-			            var progressMessage = "File : " + file['name'] + " ("+file['type']+") upload error";
+			            var progressMessage = "WARNING !! File : " + file['name'] + " ("+file['type']+") upload error";
 			            var fileDiv = document.getElementById('file_'+nbDone+'');
 			            fileDiv.textContent = progressMessage;
 			            uploadNext();
@@ -274,7 +284,7 @@ $upload_b = $upload_mb * 1024 * 1024;
 			            var nextFile = list.shift();
 			            var sizeMax = <?php echo $upload_b;?>;
 			            if (nextFile.size >= sizeMax) { // 20Mb = generally the max file size on PHP hosts
-			                var progressMessage = "File : " + nextFile['name'] + " ("+nextFile['type']+") File Too big (" + nextFile['size'] + " > "+sizeMax+")";
+			                var progressMessage = "WARNING !! File : " + nextFile['name'] + " ("+nextFile['type']+") is too BIG ! (" + nextFile['size'] + " > "+sizeMax+")";
 			                var fileDiv = document.getElementById('file_'+nbDone+'');
 			                fileDiv.textContent = progressMessage;
 			                uploadError = true;
