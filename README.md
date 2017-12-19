@@ -11,7 +11,7 @@ Les plus :
 - PAS d'inscription nécessaire sur un site web obscure qui utilisera surement tôt ou tard VOS données.
 - PAS de pub
 
-Demo kris : http://test.xoofoo.org/up/
+Demo kris : https://xoofoo.org/demo/up/
 
 ### SYSTEM REQUIREMENTS
 - Apache or Nginx (recommended) or IIS
